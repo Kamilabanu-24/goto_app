@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parentapp_design/src/common%20widgets/parent_button.dart';
+import 'package:parentapp_design/src/common%20widgets/button.dart';
 import 'OTP_page.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginPageState extends State<LoginPage> {
   TextEditingController mobilecontroller = TextEditingController();
   @override
   String dropdownvalue = '+91';
-  List<String> items = [
+  var items = [
     '+91',
     '+1',
   ];
@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         children: [
           Container(
-            padding: const EdgeInsets.only(left: 16, right: 141),
+            padding: const EdgeInsets.only(left: 16, right: 14),
             margin: const EdgeInsets.only(top: 118),
             child: Text(
               'Welcome to\nLocus',
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Container(
             margin: EdgeInsets.only(top: 40),
-            padding: EdgeInsets.only(left: 16, right: 263),
+            padding: EdgeInsets.only(left: 16, right: 26),
             child: Text(
               'Mobile Number',
               style: GoogleFonts.outfit(
@@ -116,11 +116,11 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             height: 60,
           ),
-          ParentButton(
+          Button(
             text: 'Get OTP',
             click: () {
               Navigator.push(
-              context, MaterialPageRoute(builder: (context) => OTPPage()));
+                  context, MaterialPageRoute(builder: (context) => OTPPage()));
             },
           ),
         ],

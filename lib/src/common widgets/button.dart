@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../features/screens/OTP_page.dart';
-
-class ParentButton extends StatelessWidget {
+class Button extends StatelessWidget {
   final String text;
   final VoidCallback click;
-  const ParentButton({Key? key, required this.text, required this.click})
+  const Button({Key? key, required this.text, required this.click})
       : super(key: key);
 
   @override

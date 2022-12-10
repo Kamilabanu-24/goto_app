@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parentapp_design/src/common%20widgets/otp_value.dart';
-import 'package:parentapp_design/src/common%20widgets/parent_button.dart';
-import 'package:parentapp_design/src/features/screens/welcome_page.dart';
+import 'package:parentapp_design/src/common%20widgets/button.dart';
+import 'package:parentapp_design/src/features/screens/bottomnavigation_bar.dart';
+
+import '../../common widgets/otp_field.dart';
 
 class OTPPage extends StatelessWidget {
   const OTPPage({Key? key}) : super(key: key);
@@ -66,12 +67,12 @@ class OTPPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OTPValue(),
-              OTPValue(),
-              OTPValue(),
-              OTPValue(),
-              OTPValue(),
-              OTPValue(),
+              OTPField(),
+              OTPField(),
+              OTPField(),
+              OTPField(),
+              OTPField(),
+              OTPField(),
             ],
           ),
           SizedBox(
@@ -103,11 +104,11 @@ class OTPPage extends StatelessWidget {
           SizedBox(
             height: 52,
           ),
-          ParentButton(
+          Button(
             text: 'Login',
             click: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => WelcomePage()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
         ],
