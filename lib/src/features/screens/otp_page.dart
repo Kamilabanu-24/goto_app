@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parentapp_design/src/common%20widgets/button.dart';
-import 'package:parentapp_design/src/features/screens/bottomnavigation_bar.dart';
-
-import '../../common widgets/otp_field.dart';
+import '../../commonwidgets/otp_field.dart';
+import '../../commonwidgets/customable_button.dart';
+import 'bottomnavigation_bar.dart';
 
 class OTPPage extends StatelessWidget {
   const OTPPage({Key? key}) : super(key: key);
@@ -104,7 +103,7 @@ class OTPPage extends StatelessWidget {
           SizedBox(
             height: 52,
           ),
-          Button(
+          CustomableButton(
             text: 'Login',
             click: () {
               Navigator.push(

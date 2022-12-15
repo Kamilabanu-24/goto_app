@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parentapp_design/src/common%20widgets/button.dart';
-import 'OTP_page.dart';
+import 'package:parentapp_design/src/commonwidgets/customable_button.dart';
+import 'otp_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,14 +13,73 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController mobilecontroller = TextEditingController();
-  @override
   String dropdownvalue = '+91';
-  var items = [
+  List<String> items = [
     '+91',
     '+1',
   ];
 
+  @override
   Widget build(BuildContext context) {
+    var container = Container(
+      padding: EdgeInsets.only(left: 16, right: 16),
+      height: 60,
+      width: double.infinity,
+      child: TextField(
+        style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.w300,
+            fontStyle: FontStyle.normal,
+            color: Colors.black),
+        keyboardType: TextInputType.phone,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(10),
+          FilteringTextInputFormatter.digitsOnly,
+        ],
+        decoration: InputDecoration(
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Color.fromRGBO(5, 31, 50, 0.8))),
+            prefixIcon: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Text(
+                    "+91",
+                    style: GoogleFonts.outfit(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(0, 0, 0, 1)),
+                  ),
+                ),
+                PopupMenuButton<String>(
+                  icon: const Icon(
+                    Icons.expand_more,
+                    color: Color.fromRGBO(5, 31, 50, 1),
+                    size: 30,
+                  ),
+                  onSelected: (String value) {
+                    mobilecontroller.text = value;
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return items.map<PopupMenuItem<String>>((String value) {
+                      return new PopupMenuItem(
+                          child: new Text(value), value: value);
+                    }).toList();
+                  },
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 0),
+                  child: Text(
+                    '|',
+                    style: GoogleFonts.outfit(
+                        fontSize: 50, fontWeight: FontWeight.w100),
+                  ),
+                ),
+              ],
+            )),
+      ),
+    );
     return Scaffold(
       body: ListView(
         children: [
@@ -52,76 +111,16 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(
             height: 12,
           ),
-          Container(
-            padding: EdgeInsets.only(left: 16, right: 16),
-            height: 60,
-            width: double.infinity,
-            child: TextField(
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w300,
-                  fontStyle: FontStyle.normal,
-                  color: Colors.black),
-              keyboardType: TextInputType.phone,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(10),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide:
-                          BorderSide(color: Color.fromRGBO(5, 31, 50, 0.8))),
-                  prefixIcon: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 16),
-                        child: Text(
-                          "+91",
-                          style: GoogleFonts.outfit(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromRGBO(0, 0, 0, 1)),
-                        ),
-                      ),
-                      PopupMenuButton<String>(
-                        icon: const Icon(
-                          Icons.expand_more,
-                          color: Color.fromRGBO(5, 31, 50, 1),
-                          size: 30,
-                        ),
-                        onSelected: (String value) {
-                          mobilecontroller.text = value;
-                        },
-                        itemBuilder: (BuildContext context) {
-                          return items
-                              .map<PopupMenuItem<String>>((String value) {
-                            return new PopupMenuItem(
-                                child: new Text(value), value: value);
-                          }).toList();
-                        },
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 0),
-                        child: Text(
-                          '|',
-                          style: GoogleFonts.outfit(
-                              fontSize: 50, fontWeight: FontWeight.w100),
-                        ),
-                      ),
-                    ],
-                  )),
-            ),
-          ),
+          container,
           SizedBox(
             height: 60,
           ),
-          Button(
-            text: 'Get OTP',
+          CustomableButton(
             click: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => OTPPage()));
             },
+            text: 'Get OTP',
           ),
         ],
       ),

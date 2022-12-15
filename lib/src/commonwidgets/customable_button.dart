@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Button extends StatelessWidget {
+class CustomableButton extends StatelessWidget {
   final String text;
   final VoidCallback click;
-  const Button({Key? key, required this.text, required this.click})
+  const CustomableButton({Key? key, required this.text, required this.click})
       : super(key: key);
 
   @override
